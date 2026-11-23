@@ -1,0 +1,63 @@
+# 特征评估配置。换一批特征时改本文件和三张表，不改 feature_eval 源码。
+
+inputs:
+  schema: feature_schema.csv
+  stats: feature_stats.csv
+  samples: feature_samples.csv
+
+columns:
+  id: sample_id
+  label: label
+  exclude:
+    - sample_id
+    - label
+
+metrics:
+  completeness: true
+  validity: true
+  discrimination: true
+  usability: true
+  redundancy: true
+  iv: true
+  mutual_info: true
+
+# effective：用 max(AUC, 1-AUC) 决策，反向特征可以保留
+# raw：只用原始 AUC，低于淘汰线即淘汰
+auc:
+  mode: effective
+
+thresholds:
+  missing_drop: 0.50
+  missing_indicator_min: 0.05
+  auc_drop: 0.53
+  auc_keep: 0.55
+  iv_drop: 0.02
+  iv_keep: 0.10
+  mi_drop: 0.001
+  mi_keep: 0.01
+  top1_constant: 0.99
+  cardinality_drop: 1000
+  cardinality_encode_min: 50
+  top5_sparse: 0.05
+  invalid_drop: 0.05
+  left_censor_min_ratio: 0.20
+  iv_min_bin_count: 30
+  redundancy_drop: 0.90
+  redundancy_report: 0.70
+  discrimination_tie: 0.01
+  auc_gap_warn: 0.03
+
+ranges:
+  user_click_rate_7d: [0, 1]
+  user_duration_avg_7d: [0, 86400]
+  item_ctr_7d: [0, 1]
+  item_author_fans: [0, 100000000]
+  user_last_active_gap: [0, 3650]
+  cross_user_item_match: [0, 1]
+  item_quality_score: [0, 1]
+  user_realtime_intention: [0, 1]
+  item_freshness_hour: [0, 87600]
+
+sentinels:
+  item_author_fans: [9999999]
+  item_quality_score: [999999]

@@ -1,0 +1,16 @@
+feature_name,feature_type,description
+user_click_rate_7d,numeric,用户近7天点击率
+user_duration_avg_7d,numeric,用户近7天平均停留时长(秒)
+item_ctr_7d,numeric,物料近7天点击率
+item_author_fans,numeric,作者粉丝数
+user_last_active_gap,numeric,用户距上次活跃天数
+cross_user_item_match,numeric,用户-物料标签匹配度
+user_city_level,categorical,用户城市等级
+item_category,categorical,物料一级品类
+item_tag,categorical,物料标签(细粒度)
+user_device_brand,categorical,用户设备品牌
+user_interest_tag,categorical,用户兴趣标签
+user_pay_flag,categorical,用户付费标识(0/1)
+item_quality_score,numeric,物料质量分
+user_realtime_intention,numeric,用户实时意图强度
+item_freshness_hour,numeric,物料发布距今小时数
